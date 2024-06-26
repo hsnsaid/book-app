@@ -43,7 +43,8 @@
                         <a class="btn bg-white px-3 me-2 rounded-4" href="#">Se connecter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn text-white" href="#">S'inscrire</a>
+                        <a class="btn text-white px-3"
+                            href="{{ route('register', ['type' => 'reader']) }}">S'inscrire</a>
                     </li>
                 </ul>
             </div>
@@ -64,7 +65,7 @@
                         Votre destination pour des ebooks qui inspirent,
                         <br />divertissent et enrichissent votre esprit.
                     </p>
-                    <a href="./books.html" class="btn px-3 py-2 text-white bg-green custom-shadow">
+                    <a href="{{ route('books.search') }}" class="btn px-3 py-2 text-white bg-green custom-shadow">
                         Commence votre lecture
                     </a>
                 </div>

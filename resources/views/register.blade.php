@@ -17,21 +17,46 @@
 <body>
     <div class="container">
         <div class="logo mx-auto mt-5 mb-3">
-            <img src="./img/ghezyid.jpg" class="d-block mx-auto" width="150" height="45" alt="" />
+            <img src="{{ asset('img/ghezyid.jpg') }}" class="d-block mx-auto" width="150" height="45"
+                alt="" />
             <div class="text-center mt-3">
                 <h3>Créer votre compte</h3>
                 <p class="f-s-3 mt-3 fw-lighter">
-                    Inscriver-vous pour publier vos livres et gérer votre compte
-                    d'auteur, et générer des revenues
+                    @switch($type)
+                        @case('reader')
+                            {{ "Inscriver-vous et savourer la lecture de vos livres préférés en
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ligne" }}
+                        @break
+
+                        @case('writer')
+                            {{ "Inscriver-vous pour publier vos livres et gérer votre compte
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                d'auteur, et générer des revenues
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                " }}
+                        @break
+                    @endswitch
                 </p>
             </div>
         </div>
         <div class="w-50 mx-auto p-4 border shadow rounded-3">
             <div class="account-type d-flex justify-content-center">
-                <a class="btn text-blue fw-bold me-3" href="./register-read.html">Liseur</a>
-                <a class="btn bg-blue text-white px-3 fw-bold">Ecrivain</a>
+                @switch($type)
+                    @case('reader')
+                        <a class="btn bg-blue text-white fw-bold me-3"
+                            href="{{ route('register', ['type' => 'reader']) }}">Liseur</a>
+                        <a class="btn text-blue  px-3 fw-bold" href="{{ route('register', ['type' => 'writer']) }}">Ecrivain</a>
+                    @break
+
+                    @case('writer')
+                        <a class="btn text-blue fw-bold me-3" href="{{ route('register', ['type' => 'reader']) }}">Liseur</a>
+                        <a class="btn bg-blue text-white px-3 fw-bold"
+                            href="{{ route('register', ['type' => 'writer']) }}">Ecrivain</a>
+                    @break
+                @endswitch
+
             </div>
-            <div class="form-fields w-75 mx-auto mt-4">
+            <form method="POST" action="{{ route('register.pack', ['type' => $type]) }}"
+                class="form-fields w-75 mx-auto mt-4">
+                @csrf
                 <div class="form-group mb-3">
                     <label class="form-label">Entrez votre pseudo</label>
                     <input type="text" class="form-control" />
@@ -44,14 +69,16 @@
                     <label class="form-label">Entrez votre password</label>
                     <input type="password" class="form-control" />
                 </div>
-                <div class="form-group mb-3">
-                    <label class="form-label">Entrez votre telephone</label>
-                    <input type="numer" class="form-control" />
-                </div>
-                <a href="./packs.html" class="btn bg-green-secondary text-white px-4 fw-bold rounded-3 mt-4">
+                @if ($type == 'writer')
+                    <div class="form-group mb-3">
+                        <label class="form-label">Entrez votre telephone</label>
+                        <input type="numer" class="form-control" />
+                    </div>
+                @endif
+                <button type="submit" class="btn bg-green-secondary text-white px-4 fw-bold rounded-3 mt-4">
                     S'inscrire
-                </a>
-            </div>
+                </button>
+            </form>
         </div>
     </div>
 </body>
