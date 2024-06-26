@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->enum('planType', ['Gratuit', 'Basique', 'Premium']);
+            $table->date('planStartDate');
+            $table->date('planEndDate');
+            $table->enum('userType', ['reader', 'writer']);
             $table->timestamps();
         });
     }

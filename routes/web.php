@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,10 +26,8 @@ Route::get('/book/{id}', function () {
     return view('book-details');
 })->name('book');
 
-Route::get('/register/{type}', function ($type = 'reader') {
-    return view("register", compact('type'));
-})->name('register');
 
-Route::post('/pack/{type}', function ($type) {
-    return view('packs', compact('type'));
-})->name('register.pack');
+Route::get('/login/{type}', [AccountController::class, 'renderLogin'])->name('login.form');
+Route::post('/login/{type}', [AccountController::class, 'accessAccount'])->name('login.submit');
+Route::get('/register/{type}', [AccountController::class, 'renderRegister'])->name('register');
+Route::post('/pack/{type}', [AccountController::class, 'renderSubscriptionPlan'])->name('register.pack');
