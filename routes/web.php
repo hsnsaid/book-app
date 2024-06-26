@@ -15,16 +15,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 
 Route::get('/books', function () {
     return view('books');
-});
+})->name('books.search');
 
 Route::get('/book/{id}', function () {
     return view('book-details');
-});
+})->name('book');
 
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/register/{type}', function ($type = 'reader') {
+    return view("register", compact('type'));
+})->name('register');
+
+Route::post('/pack/{type}', function ($type) {
+    return view('packs', compact('type'));
+})->name('register.pack');
