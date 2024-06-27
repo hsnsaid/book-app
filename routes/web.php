@@ -32,9 +32,7 @@ Route::group(['middleware' => 'onlyAuth'], function () {
         return view('mes-livres');
     })->name('books.reading');
 
-    Route::get('/books/uploaded', function () {
-        return view('mes-livres');
-    })->name('books.uploaded');
+    Route::get('/books/uploaded', [WriterController::class, 'myBooks'])->name('books.uploaded');
 
 
     Route::prefix('/admin')->name('admin.')->group(function () {

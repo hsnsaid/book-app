@@ -67,4 +67,11 @@ class WriterController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function myBooks()
+    {
+        $writer = Writer::find(session('id'));
+        $books = $writer->books()->get(['id', 'title', 'description', 'language', 'picture', 'genre']);
+        return view('mes-livres', compact('books'));
+    }
 }

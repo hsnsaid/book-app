@@ -123,146 +123,40 @@
             </form>
         </div>
         <div class="container">
-            <div class="card my-5 border-0">
-                <div class="row g-0">
-                    <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('img/books/book-2.jpg') }}" class="img-fluid rounded-start" width="200"
-                            height="250" />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h2 class="card-title fw-bold">Monster Killer</h2>
-                            <p class="text-body-secondary fs-3">Horror</p>
-                            <p class="fs-6">Anglais</p>
-                            <p class="card-text mt-3 text-dark">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deserunt officia aut sed consequatur sequi pariatur asperiores
-                                odio quam magnam corrupti minus, optio quos ut tempora
-                                voluptas totam? Odit, ab minima itaque suscipit impedit
-                                provident fugiat deleniti alias, fugit necessitatibus quos
-                                ratione quam ea neque corrupti in. Consequatur nemo
-                                perspiciatis sunt?
-                            </p>
-                            <div class="mt-4 fs-4">
-                                <i class="bi bi-star-fill text-green"></i><i class="bi bi-star-fill text-green"></i><i
-                                    class="bi bi-star-fill text-green"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                                <i class="bi bi-star text-secondary"></i>
+            @forelse ($books as $book)
+                <div class="card my-5 border-0">
+                    <div class="row g-0">
+                        <div class="col-md-2 d-flex justify-content-center align-items-center">
+                            <img src="{{ asset("storage/$book->picture") }}" class="img-fluid rounded-start"
+                                width="200" height="250" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title fw-bold">{{ $book->title }}</h2>
+                                <p class="text-body-secondary fs-3">{{ $book->genre }}</p>
+                                <p class="fs-6">{{ $book->language }}</p>
+                                <p class="card-text mt-3 text-dark">
+                                    {{ $book->description }}
+                                </p>
+                                <div class="mt-4 fs-4">
+                                    <i class="bi bi-star-fill text-green"></i><i
+                                        class="bi bi-star-fill text-green"></i><i
+                                        class="bi bi-star-fill text-green"></i>
+                                    <i class="bi bi-star text-secondary"></i>
+                                    <i class="bi bi-star text-secondary"></i>
+                                    <i class="bi bi-star text-secondary"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <h3 class="text-end fw-bold">40 Lus</h3>
-                    </div>
-                </div>
-                <hr class="mt-5 text-green" />
-            </div>
-            <div class="card my-5 border-0">
-                <div class="row g-0">
-                    <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('img/books/book-2.jpg') }}" class="img-fluid rounded-start" width="200"
-                            height="250" />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h2 class="card-title fw-bold">Monster Killer</h2>
-                            <p class="text-body-secondary fs-3">Horror</p>
-                            <p class="fs-6">Anglais</p>
-                            <p class="card-text mt-3 text-dark">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deserunt officia aut sed consequatur sequi pariatur asperiores
-                                odio quam magnam corrupti minus, optio quos ut tempora
-                                voluptas totam? Odit, ab minima itaque suscipit impedit
-                                provident fugiat deleniti alias, fugit necessitatibus quos
-                                ratione quam ea neque corrupti in. Consequatur nemo
-                                perspiciatis sunt?
-                            </p>
-                            <div class="mt-4 fs-4">
-                                <i class="bi bi-star-fill text-green"></i><i class="bi bi-star-fill text-green"></i><i
-                                    class="bi bi-star-fill text-green"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                            </div>
+                        <div class="col-md-2 d-flex justify-content-center align-items-center">
+                            <h3 class="text-end fw-bold">40 Lus</h3>
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <h3 class="text-end fw-bold">40 Lus</h3>
-                    </div>
+                    <hr class="mt-5 text-green" />
                 </div>
-                <hr class="mt-5 text-green" />
-            </div>
-            <div class="card my-5 border-0">
-                <div class="row g-0">
-                    <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('img/books/book-2.jpg') }}" class="img-fluid rounded-start"
-                            width="200" height="250" />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h2 class="card-title fw-bold">Monster Killer</h2>
-                            <p class="text-body-secondary fs-3">Horror</p>
-                            <p class="fs-6">Anglais</p>
-                            <p class="card-text mt-3 text-dark">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deserunt officia aut sed consequatur sequi pariatur asperiores
-                                odio quam magnam corrupti minus, optio quos ut tempora
-                                voluptas totam? Odit, ab minima itaque suscipit impedit
-                                provident fugiat deleniti alias, fugit necessitatibus quos
-                                ratione quam ea neque corrupti in. Consequatur nemo
-                                perspiciatis sunt?
-                            </p>
-                            <div class="mt-4 fs-4">
-                                <i class="bi bi-star-fill text-green"></i><i class="bi bi-star-fill text-green"></i><i
-                                    class="bi bi-star-fill text-green"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <h3 class="text-end fw-bold">40 Lus</h3>
-                    </div>
-                </div>
-                <hr class="mt-5 text-green" />
-            </div>
-            <div class="card my-5 border-0">
-                <div class="row g-0">
-                    <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('img/books/book-2.jpg') }}" class="img-fluid rounded-start"
-                            width="200" height="250" />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h2 class="card-title fw-bold">Monster Killer</h2>
-                            <p class="text-body-secondary fs-3">Horror</p>
-                            <p class="fs-6">Anglais</p>
-                            <p class="card-text mt-3 text-dark">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deserunt officia aut sed consequatur sequi pariatur asperiores
-                                odio quam magnam corrupti minus, optio quos ut tempora
-                                voluptas totam? Odit, ab minima itaque suscipit impedit
-                                provident fugiat deleniti alias, fugit necessitatibus quos
-                                ratione quam ea neque corrupti in. Consequatur nemo
-                                perspiciatis sunt?
-                            </p>
-                            <div class="mt-4 fs-4">
-                                <i class="bi bi-star-fill text-green"></i><i class="bi bi-star-fill text-green"></i><i
-                                    class="bi bi-star-fill text-green"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                                <i class="bi bi-star text-secondary"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <h3 class="text-end fw-bold">40 Lus</h3>
-                    </div>
-                </div>
-                <hr class="mt-5 text-green" />
-            </div>
+            @empty
+                <h1>you have 0 Books uploaded</h1>
+            @endforelse
         </div>
     </main>
     <footer class="bg-green-secondary d-flex justify-content-center align-items-center"
