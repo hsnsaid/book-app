@@ -45,7 +45,7 @@ Route::group(['middleware' => 'onlyGuest'], function () {
     Route::post('/register/reader', [ReaderController::class, 'storeTemp'])->name('register.reader.storeTemp');
     Route::post('/register/writer', [WriterController::class, 'storeTemp'])->name('register.writer.storeTemp');
     Route::post('/register/reader/submit', [ReaderController::class, 'create'])->name('register.reader.submit');
-    Route::post('/register/writer/submit', [ReaderController::class, 'create'])->name('register.writer.submit');
+    Route::post('/register/writer/submit', [WriterController::class, 'create'])->name('register.writer.submit');
     Route::get('/plan/{type}', [UIController::class, 'renderSubscriptionPlan'])->name('register.plan');
 });
 

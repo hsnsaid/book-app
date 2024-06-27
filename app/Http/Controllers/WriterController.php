@@ -59,12 +59,12 @@ class WriterController extends Controller
             return redirect()->route('login.form', ['type' => 'writer'])->with('message', 'invalide pseudo ou/et mot de pass');
         else
             session([
+                'id' => $writer->id,
                 'auth' => true,
                 'userType' => 'writer',
                 'name' => $writer->name,
             ]);
 
-        session()->put('id', $writer->id);
         return redirect()->route('home');
     }
 }
