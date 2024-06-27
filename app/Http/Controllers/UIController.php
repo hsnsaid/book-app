@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Writer;
 use Illuminate\Http\Request;
 
-class AccountController extends Controller
+class UIController extends Controller
 {
     public function renderRegister($type)
     {
