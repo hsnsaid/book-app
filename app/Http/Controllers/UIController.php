@@ -26,19 +26,19 @@ class UIController extends Controller
 
     public function renderAdminStats()
     {
-        return view('admin-stat');
+        return view('admin.stats');
     }
     public function renderAdminReaders()
     {
-        return view('admin-liseur');
+        return view('admin.readers');
     }
 
     public function renderAdminWriters()
     {
-        return view('admin-ecrivain');
+        return view('admin.writers');
     }
     public function renderAdminBooks()
     {
-        return view('admin-livres');
+        return view('admin.books');
     }
 }
