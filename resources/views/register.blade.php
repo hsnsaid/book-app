@@ -25,13 +25,13 @@
                     @switch($type)
                         @case('reader')
                             {{ "Inscriver-vous et savourer la lecture de vos livres préférés en
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ligne" }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ligne" }}
                         @break
 
                         @case('writer')
                             {{ "Inscriver-vous pour publier vos livres et gérer votre compte
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                d'auteur, et générer des revenues
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                " }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        d'auteur, et générer des revenues
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        " }}
                         @break
                     @endswitch
                 </p>
@@ -54,25 +54,44 @@
                 @endswitch
 
             </div>
-            <form method="POST" action="{{ route('register.pack', ['type' => $type]) }}"
-                class="form-fields w-75 mx-auto mt-4">
+            <form method="POST" action="{{ route("register.$type.storeTemp") }}" class="form-fields w-75 mx-auto mt-4">
                 @csrf
                 <div class="form-group mb-3">
                     <label class="form-label">Entrez votre pseudo</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" name="name" class="form-control" value="{{ old('name') }}" />
+                    @error('name')
+                        <p class="text-danger">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Entrez votre adresse e-mail</label>
-                    <input type="email" class="form-control" />
+                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" />
+                    @error('email')
+                        <p class="text-danger">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Entrez votre password</label>
-                    <input type="password" class="form-control" />
+                    <input type="password" name="password" class="form-control" />
+                    @error('password')
+                        <p class="text-danger">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 @if ($type == 'writer')
                     <div class="form-group mb-3">
                         <label class="form-label">Entrez votre telephone</label>
-                        <input type="numer" class="form-control" />
+                        <input type="numer" name="phone" class="form-control" value="{{ old('phone') }}" />
+                        @error('phone')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                 @endif
                 <button type="submit" class="btn bg-green-secondary text-white px-4 fw-bold rounded-3 mt-4">

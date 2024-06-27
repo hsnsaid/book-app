@@ -27,7 +27,10 @@
         </div>
         <div class="row g-3 my-5">
             <div class="col-4">
-                <div class="rounded-3 text-center rounded-3 shadow py-3 w-75 mx-auto">
+                <form method="POST" action="{{ route("register.$type.submit") }}"
+                    class="rounded-3 text-center rounded-3 shadow py-3 w-75 mx-auto">
+                    @csrf
+                    <input type="hidden" name="pack-type" value="gratuit">
                     <h2 class="text-danger my-3 fw-bold">GRATUIT</h2>
                     <p class="my-5 fs-4">
                         <span class="text-green-seconadry"><span><i class="bi bi-check me-3"></i></span>2</span>
@@ -46,10 +49,14 @@
                         data-bs-target="#paymentForm">
                         Choisir
                     </button>
-                </div>
+
+                </form>
             </div>
             <div class="col-4">
-                <div class="rounded-3 text-center rounded-3 shadow py-3 w-75 mx-auto">
+                <form method="POST" action="{{ route("register.$type.submit") }}"
+                    class="rounded-3 text-center rounded-3 shadow py-3 w-75 mx-auto">
+                    @csrf
+                    <input type="hidden" name="pack-type" value="basique">
                     <h2 class="text-green-seconadry my-3 fw-bold">BASIQUE</h2>
                     <p class="my-5 fs-4">
                         <span class="text-green-seconadry"><span><i class="bi bi-check me-3"></i></span>20</span>
@@ -68,10 +75,13 @@
                         class="d-block mx-auto my-5 btn bg-success px-5 text-white fw-bold">
                         Choisir
                     </button>
-                </div>
+                </form>
             </div>
-            <form class="col-4">
-                <div class="rounded-3 text-center rounded-3 shadow py-3 w-75 mx-auto">
+            <div class="col-4">
+                <form method="POST" action="{{ route("register.$type.submit") }}"
+                    class="rounded-3 text-center rounded-3 shadow py-3 w-75 mx-auto">
+                    @csrf
+                    <input type="hidden" name="pack-type" value="premium">
                     <h2 class="text-warning my-3 fw-bold">PREMIUM</h2>
                     <p class="my-5 fs-4">
                         <span class="text-green-seconadry"><span><i class="bi bi-check me-3"></i></span><i
@@ -90,9 +100,9 @@
                     <button class="d-block mx-auto my-5 btn bg-success px-5 text-white fw-bold">
                         Choisir
                     </button>
-                </div>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 </body>
 

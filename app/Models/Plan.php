@@ -13,5 +13,6 @@ class Plan extends Model
         'planStartDate',
         'planEndDate',
         'userType',
+        'userId',
     ];
 }
