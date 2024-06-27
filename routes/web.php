@@ -20,13 +20,10 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::get('/books', function () {
-    return view('books');
-})->name('books.search');
-
-Route::get('/book/{id}', function () {
-    return view('book-details');
-})->name('book');
+Route::get('/logout', function () {
+    session()->flush();
+    return redirect()->route('home');
+})->name('logout');
 
 
 Route::get('/login/{type}', [UIController::class, 'renderLogin'])->name('login.form');
@@ -39,11 +36,11 @@ Route::post('/register/reader/submit', [ReaderController::class, 'create'])->nam
 Route::post('/register/writer/submit', [ReaderController::class, 'create'])->name('register.writer.submit');
 Route::get('/plan/{type}', [UIController::class, 'renderSubscriptionPlan'])->name('register.plan');
 
-Route::get('/logout', function () {
-    session()->flush();
-    return redirect()->route('home');
-})->name('logout');
 
-Route::get('/welcome', function () {
-    return '<h1>welcome to my house </h1>';
-})->name('welcome');
+Route::get('/books', function () {
+    return view('books');
+})->name('books.search');
+
+Route::get('/book/{id}', function () {
+    return view('book-details');
+})->name('book');

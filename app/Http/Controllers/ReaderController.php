@@ -29,7 +29,7 @@ class ReaderController extends Controller
         session()->remove('password');
         session()->remove('planType');
 
-        return redirect()->route('welcome');
+        return redirect()->route('home');
     }
     public function storeTemp(ReaderRequest $request)
     {
