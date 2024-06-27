@@ -17,10 +17,28 @@ class UIController extends Controller
     }
     public function renderSubscriptionPlan($type)
     {
-        return view('packs', compact('type'));
+        return view('plans', compact('type'));
     }
     public function renderBookUpload()
     {
         return view('book-upload');
+    }
+
+    public function renderAdminStats()
+    {
+        return view('admin-stat');
+    }
+    public function renderAdminReaders()
+    {
+        return view('admin-liseur');
+    }
+
+    public function renderAdminWriters()
+    {
+        return view('admin-ecrivain');
+    }
+    public function renderAdminBooks()
+    {
+        return view('admin-livres');
     }
 }

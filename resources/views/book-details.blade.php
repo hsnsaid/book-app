@@ -17,7 +17,7 @@
 <body class="overflow-x-hidden">
     <nav class="navbar navbar-expand-lg border-bottom-grey px-5 shadow-sm bg-green-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold fs-4 text-white" href="#">Ghezyid eBook</a>
+            <a class="navbar-brand fw-bold fs-4 text-white" href="{{ route('home') }}">Ghezyid eBook</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -47,10 +47,11 @@
 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="btn bg-white px-3 me-2 rounded-4" href="#">Se connecter</a>
+                        <a class="btn bg-white px-3 me-2 rounded-4"
+                            href="{{ route('login.form', ['type' => 'reader']) }}">Se connecter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn text-white" href="#">S'inscrire</a>
+                        <a class="btn text-white" href="{{ route('register', ['type' => 'reader']) }}">S'inscrire</a>
                     </li>
                 </ul>
             </div>

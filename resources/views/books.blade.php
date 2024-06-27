@@ -17,7 +17,7 @@
 <body class="overflow-x-hidden">
     <nav class="navbar navbar-expand-lg border-bottom-grey px-5 shadow-sm bg-green-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold fs-4 text-white" href="#">Ghezyid eBook</a>
+            <a class="navbar-brand fw-bold fs-4 text-white" href="{{ route('home') }}">Ghezyid eBook</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -47,10 +47,11 @@
 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="btn bg-white px-3 me-2 rounded-4" href="#">Se connecter</a>
+                        <a class="btn bg-white px-3 me-2 rounded-4"
+                            href="{{ route('login.form', ['type' => 'reader']) }}">Se connecter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn text-white" href="#">S'inscrire</a>
+                        <a class="btn text-white" href="{{ route('register', ['type' => 'reader']) }}">S'inscrire</a>
                     </li>
                 </ul>
             </div>
@@ -102,60 +103,65 @@
             </div>
         </section>
         <section class="col-9 row g-4 pb-5">
-            <a class="col-4 text-decoration-none" href="./book-details.html">
+            <a class="col-4 text-decoration-none" href="{{ route('book.display') }}">
                 <div class="card shadow-lg rounded-2 border border-1 overflow-hidden">
                     <div class="p-2 bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset("img/books/book-2.jpg") }}" width="200" height="300" alt="" />
+                        <img src="{{ asset('img/books/book-2.jpg') }}" width="200" height="300" alt="" />
                     </div>
                     <div class="card-body">
                         <h4 class="card-text text-center my-4">Monster Killer</h4>
                     </div>
                 </div>
             </a>
-            <a class="col-4 text-decoration-none" href="./book-details.html">
+            <a class="col-4 text-decoration-none" href="{{ route('book.display') }}">
                 <div class="card shadow-lg rounded-2 border border-1 overflow-hidden">
                     <div class="p-2 bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset("img/books/book-2.jpg") }}" width="200" height="300" alt="" />
+                        <img src="{{ asset('img/books/book-2.jpg') }}" width="200" height="300"
+                            alt="" />
                     </div>
                     <div class="card-body">
                         <h4 class="card-text text-center my-4">Monster Killer</h4>
                     </div>
                 </div>
             </a>
-            <a class="col-4 text-decoration-none" href="./book-details.html">
+            <a class="col-4 text-decoration-none" href="{{ route('book.display') }}">
                 <div class="card shadow-lg rounded-2 border border-1 overflow-hidden">
                     <div class="p-2 bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset("img/books/book-2.jpg") }}" width="200" height="300" alt="" />
+                        <img src="{{ asset('img/books/book-2.jpg') }}" width="200" height="300"
+                            alt="" />
                     </div>
                     <div class="card-body">
                         <h4 class="card-text text-center my-4">Monster Killer</h4>
                     </div>
                 </div>
             </a>
-            <a class="col-4 text-decoration-none" href="./book-details.html">
+            <a class="col-4 text-decoration-none" href="{{ route('book.display') }}">
                 <div class="card shadow-lg rounded-2 border border-1 overflow-hidden">
                     <div class="p-2 bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset("img/books/book-2.jpg") }}" width="200" height="300" alt="" />
+                        <img src="{{ asset('img/books/book-2.jpg') }}" width="200" height="300"
+                            alt="" />
                     </div>
                     <div class="card-body">
                         <h4 class="card-text text-center my-4">Monster Killer</h4>
                     </div>
                 </div>
             </a>
-            <a class="col-4 text-decoration-none" href="./book-details.html">
+            <a class="col-4 text-decoration-none" href="{{ route('book.display') }}">
                 <div class="card shadow-lg rounded-2 border border-1 overflow-hidden">
                     <div class="p-2 bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset("img/books/book-2.jpg") }}" width="200" height="300" alt="" />
+                        <img src="{{ asset('img/books/book-2.jpg') }}" width="200" height="300"
+                            alt="" />
                     </div>
                     <div class="card-body">
                         <h4 class="card-text text-center my-4">Monster Killer</h4>
                     </div>
                 </div>
             </a>
-            <a class="col-4 text-decoration-none" href="./book-details.html">
+            <a class="col-4 text-decoration-none" href="{{ route('book.display') }}">
                 <div class="card shadow-lg rounded-2 border border-1 overflow-hidden">
                     <div class="p-2 bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset("img/books/book-2.jpg") }}" width="200" height="300" alt="" />
+                        <img src="{{ asset('img/books/book-2.jpg') }}" width="200" height="300"
+                            alt="" />
                     </div>
                     <div class="card-body">
                         <h4 class="card-text text-center my-4">Monster Killer</h4>

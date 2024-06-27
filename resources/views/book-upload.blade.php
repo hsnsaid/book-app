@@ -17,7 +17,7 @@
 <body class="overflow-x-hidden">
     <nav class="navbar navbar-expand-lg border-bottom-grey px-5 shadow-sm bg-green-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold fs-4 text-white" href="#">Ghezyid eBook</a>
+            <a class="navbar-brand fw-bold fs-4 text-white" href="{{ route('home') }}">Ghezyid eBook</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">

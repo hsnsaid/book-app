@@ -18,32 +18,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' => 'onlyAuth'], function () {
+    Route::get('/logout', function () {
+        session()->flush();
+        return redirect()->route('home');
+    })->name('logout');
+
+    Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload');
+    Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload');
+});
+
+Route::group(['middleware' => 'onlyGuest'], function () {
+    Route::get('/login/{type}', [UIController::class, 'renderLogin'])->name('login.form');
+    Route::post('/login/reader', [ReaderController::class, 'accessAccount'])->name('login.reader.submit');
+    Route::post('/login/writer', [WriterController::class, 'accessAccount'])->name('login.writer.submit');
+    Route::get('/register/{type}', [UIController::class, 'renderRegister'])->name('register');
+    Route::post('/register/reader', [ReaderController::class, 'storeTemp'])->name('register.reader.storeTemp');
+    Route::post('/register/writer', [WriterController::class, 'storeTemp'])->name('register.writer.storeTemp');
+    Route::post('/register/reader/submit', [ReaderController::class, 'create'])->name('register.reader.submit');
+    Route::post('/register/writer/submit', [ReaderController::class, 'create'])->name('register.writer.submit');
+    Route::get('/plan/{type}', [UIController::class, 'renderSubscriptionPlan'])->name('register.plan');
+});
+
 Route::get('/', function () {
     return view('index');
 })->name('home');
-
-Route::get('/logout', function () {
-    session()->flush();
-    return redirect()->route('home');
-})->name('logout');
-
-
-Route::get('/login/{type}', [UIController::class, 'renderLogin'])->name('login.form');
-Route::post('/login/reader', [ReaderController::class, 'accessAccount'])->name('login.reader.submit');
-Route::post('/login/writer', [WriterController::class, 'accessAccount'])->name('login.writer.submit');
-Route::get('/register/{type}', [UIController::class, 'renderRegister'])->name('register');
-Route::post('/register/reader', [ReaderController::class, 'storeTemp'])->name('register.reader.storeTemp');
-Route::post('/register/writer', [WriterController::class, 'storeTemp'])->name('register.writer.storeTemp');
-Route::post('/register/reader/submit', [ReaderController::class, 'create'])->name('register.reader.submit');
-Route::post('/register/writer/submit', [ReaderController::class, 'create'])->name('register.writer.submit');
-Route::get('/plan/{type}', [UIController::class, 'renderSubscriptionPlan'])->name('register.plan');
 
 
 Route::get('/books', function () {
     return view('books');
 })->name('books.search');
 
+Route::get('/book/display', function () {
+    return view('book-details');
+})->name('book.display');
 
-Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload');
 
-Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload');
+Route::prefix('/admin')->name('admin.')->group(function () {
+    Route::get('/statistics', [UIController::class, 'renderAdminStats'])->name('stats');
+    Route::get('/readers', [UIController::class, 'renderAdminReaders'])->name('readers');
+    Route::get('/writers', [UIController::class, 'renderAdminWriters'])->name('writers');
+    Route::get('/books', [UIController::class, 'renderAdminBooks'])->name('books');
+});
