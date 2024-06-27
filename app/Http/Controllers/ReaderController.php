@@ -29,7 +29,9 @@ class ReaderController extends Controller
         session()->remove('password');
         session()->remove('planType');
         session()->put('id', $reader->id);
-
+        session()->put('auth', true);
+        session()->put('userType', 'reader');
+        
         return redirect()->route('home');
     }
     public function storeTemp(ReaderRequest $request)
