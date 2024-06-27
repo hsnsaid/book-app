@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\UIController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\WriterController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +43,7 @@ Route::get('/books', function () {
     return view('books');
 })->name('books.search');
 
-Route::get('/book/{id}', function () {
-    return view('book-details');
-})->name('book');
+
+Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload');
+
+Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload');

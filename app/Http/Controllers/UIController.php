@@ -19,4 +19,8 @@ class UIController extends Controller
     {
         return view('packs', compact('type'));
     }
+    public function renderBookUpload()
+    {
+        return view('book-upload');
+    }
 }

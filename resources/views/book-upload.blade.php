@@ -61,18 +61,34 @@
             <h3 class="text-center text-green-seconadry">
                 Veuillez remplir les coordonnées suivantes pour téléverser votre livre
             </h3>
+            @if (session('success'))
+                <div class="mt-5 alert alert-success d-flex align-items-center alert-dismissable fade show"
+                    role="alert">
+                    <i class="bi bi-check-circle-fill text-bg-succes me-2"></i>
+                    <div>
+                        {{ session('success') }}
+                    </div>
+                    <button type="button" class="btn-close fade" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
         </div>
         <div class="container mt-6">
-            <form class="form-group row g-4">
+            <form class="form-group row g-4" method="POST" action="{{ route('book.upload') }}"
+                enctype="multipart/form-data">
+                @csrf
                 <div class="form-group-left col-6">
                     <div class="form-field mb-2">
                         <label class="form-label">Titre</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" name="title" class="form-control" value="{{ old('title') }}" />
+                        @error('title')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="form-field mb-2">
                         <label class="form-label">Genre</label>
-                        <select class="form-select">
-                            <option></option>
+                        <select class="form-select" name="genre">
                             <option>Horror</option>
                             <option>Enfant</option>
                             <option>Anime</option>
@@ -82,7 +98,7 @@
                     </div>
                     <div class="form-field mb-2">
                         <label class="form-label">Langue</label>
-                        <select class="form-select">
+                        <select class="form-select" name="language">
                             <option value="ar">Arabe</option>
                             <option value="en">Anglais</option>
                             <option value="fr">Français</option>
@@ -94,22 +110,38 @@
                     <div class="form-field mb-2 mt-5">
                         <label class="form-label">Le fichier du livre à téléverser</label>
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control" id="picture" />
+                            <input type="file" name="file" class="form-control" id="picture" />
                             <label class="input-group-text" for="picture"><i class="bi bi-upload"></i></label>
                         </div>
+                        @error('file')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="form-field mb-2">
                         <label class="form-label">Une image de la couverture du livre</label>
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control" id="picture" />
+                            <input type="file" name="picture" class="form-control" id="picture" />
                             <label class="input-group-text" for="picture"><i class="bi bi-upload"></i></label>
                         </div>
+                        @error('picture')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group-bottom col-12">
                     <div class="form-field mb-2">
                         <label class="form-label">Rédiger un résume</label>
-                        <textarea style="resize: none !important" rows="5" class="form-control" placeholder="Entre 150 et 300 mots"></textarea>
+                        <textarea style="resize: none !important" name="description" rows="5" class="form-control"
+                            placeholder="Entre 150 et 300 mots" value="{{ old('description') }}"></textarea>
+                        @error('description')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <button type="submit"
                         class="btn bg-green-secondary px-3 py-2 rounded-4 shadow-sm fw-bold text-white d-block ms-auto mt-5">

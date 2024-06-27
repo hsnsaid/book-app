@@ -30,7 +30,7 @@ class WriterController extends Controller
 
         session()->remove('password');
         session()->remove('planType');
-
+        session()->put('id', $writer->id);
         return redirect()->route('home');
     }
     public function storeTemp(WriterRequest $request)
@@ -61,6 +61,7 @@ class WriterController extends Controller
                 'name' => $writer->name,
             ]);
 
+        session()->put('id', $writer->id);
         return redirect()->route('home');
     }
 }

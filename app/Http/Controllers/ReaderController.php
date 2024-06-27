@@ -28,6 +28,7 @@ class ReaderController extends Controller
 
         session()->remove('password');
         session()->remove('planType');
+        session()->put('id', $reader->id);
 
         return redirect()->route('home');
     }
@@ -58,6 +59,8 @@ class ReaderController extends Controller
                 'userType' => 'reader',
                 'name' => $reader->name,
             ]);
+
+        session()->put('id', $reader->id);
         return redirect()->route('home');
     }
 }
