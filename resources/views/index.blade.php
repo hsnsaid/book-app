@@ -42,11 +42,13 @@
                     @if (session('auth'))
                         @if (session('userType') == 'writer')
                             <li class="nav-item">
-                                <a class="btn bg-white px-3 me-2 rounded-4" href="#">Mes Livres Téléversé</a>
+                                <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.uploaded') }}">Mes
+                                    Livres Téléversé</a>
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="btn bg-white px-3 me-2 rounded-4" href="#">Ma Liste de Lecture</a>
+                            <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.reading') }}">Ma Liste de
+                                Lecture</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown ms-3">

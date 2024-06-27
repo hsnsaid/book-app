@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
@@ -49,11 +49,13 @@
                     @if (session('auth'))
                         @if (session('userType') == 'writer')
                             <li class="nav-item">
-                                <a class="btn bg-white px-3 me-2 rounded-4" href="#">Mes Livres Téléversé</a>
+                                <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.uploaded') }}">Mes
+                                    Livres Téléversé</a>
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="btn bg-white px-3 me-2 rounded-4" href="#">Ma Liste de Lecture</a>
+                            <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.reading') }}">Ma Liste de
+                                Lecture</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown ms-3">
@@ -124,7 +126,7 @@
             <div class="card my-5 border-0">
                 <div class="row g-0">
                     <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <img src="./img/books/book-2.jpg" class="img-fluid rounded-start" width="200"
+                        <img src="{{ asset('img/books/book-2.jpg') }}" class="img-fluid rounded-start" width="200"
                             height="250" />
                     </div>
                     <div class="col-md-8">
@@ -159,7 +161,7 @@
             <div class="card my-5 border-0">
                 <div class="row g-0">
                     <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <img src="./img/books/book-2.jpg" class="img-fluid rounded-start" width="200"
+                        <img src="{{ asset('img/books/book-2.jpg') }}" class="img-fluid rounded-start" width="200"
                             height="250" />
                     </div>
                     <div class="col-md-8">
@@ -194,8 +196,8 @@
             <div class="card my-5 border-0">
                 <div class="row g-0">
                     <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <img src="./img/books/book-2.jpg" class="img-fluid rounded-start" width="200"
-                            height="250" />
+                        <img src="{{ asset('img/books/book-2.jpg') }}" class="img-fluid rounded-start"
+                            width="200" height="250" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -229,8 +231,8 @@
             <div class="card my-5 border-0">
                 <div class="row g-0">
                     <div class="col-md-2 d-flex justify-content-center align-items-center">
-                        <img src="./img/books/book-2.jpg" class="img-fluid rounded-start" width="200"
-                            height="250" />
+                        <img src="{{ asset('img/books/book-2.jpg') }}" class="img-fluid rounded-start"
+                            width="200" height="250" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

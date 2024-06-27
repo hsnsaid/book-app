@@ -28,6 +28,15 @@ Route::group(['middleware' => 'onlyAuth'], function () {
     Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload');
     Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload');
 
+    Route::get('/books/my-books', function () {
+        return view('mes-livres');
+    })->name('books.reading');
+
+    Route::get('/books/uploaded', function () {
+        return view('mes-livres');
+    })->name('books.uploaded');
+
+
     Route::prefix('/admin')->name('admin.')->group(function () {
         Route::get('/statistics', [UIController::class, 'renderAdminStats'])->name('stats');
         Route::get('/readers', [UIController::class, 'renderAdminReaders'])->name('readers');
