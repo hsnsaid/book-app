@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UIController;
 use App\Http\Controllers\ReaderController;
@@ -26,12 +27,20 @@ Route::group(['middleware' => 'onlyAuth'], function () {
 
     Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload');
     Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload');
+
+    Route::prefix('/admin')->name('admin.')->group(function () {
+        Route::get('/statistics', [UIController::class, 'renderAdminStats'])->name('stats');
+        Route::get('/readers', [UIController::class, 'renderAdminReaders'])->name('readers');
+        Route::get('/writers', [UIController::class, 'renderAdminWriters'])->name('writers');
+        Route::get('/books', [UIController::class, 'renderAdminBooks'])->name('books');
+    });
 });
 
 Route::group(['middleware' => 'onlyGuest'], function () {
     Route::get('/login/{type}', [UIController::class, 'renderLogin'])->name('login.form');
     Route::post('/login/reader', [ReaderController::class, 'accessAccount'])->name('login.reader.submit');
     Route::post('/login/writer', [WriterController::class, 'accessAccount'])->name('login.writer.submit');
+    Route::post('/login/admin', [AdminController::class, 'accessAccount'])->name('login.admin.submit');
     Route::get('/register/{type}', [UIController::class, 'renderRegister'])->name('register');
     Route::post('/register/reader', [ReaderController::class, 'storeTemp'])->name('register.reader.storeTemp');
     Route::post('/register/writer', [WriterController::class, 'storeTemp'])->name('register.writer.storeTemp');
@@ -52,11 +61,3 @@ Route::get('/books', function () {
 Route::get('/book/display', function () {
     return view('book-details');
 })->name('book.display');
-
-
-Route::prefix('/admin')->name('admin.')->group(function () {
-    Route::get('/statistics', [UIController::class, 'renderAdminStats'])->name('stats');
-    Route::get('/readers', [UIController::class, 'renderAdminReaders'])->name('readers');
-    Route::get('/writers', [UIController::class, 'renderAdminWriters'])->name('writers');
-    Route::get('/books', [UIController::class, 'renderAdminBooks'])->name('books');
-});
