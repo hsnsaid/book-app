@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('planStartDate');
             $table->date('planEndDate');
             $table->enum('userType', ['reader', 'writer']);
+            $table->integer('userId');
             $table->timestamps();
         });
     }
