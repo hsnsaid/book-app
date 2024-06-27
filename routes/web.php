@@ -38,12 +38,12 @@ Route::post('/register/reader/submit', [ReaderController::class, 'create'])->nam
 Route::post('/register/writer/submit', [ReaderController::class, 'create'])->name('register.writer.submit');
 Route::get('/plan/{type}', [UIController::class, 'renderSubscriptionPlan'])->name('register.plan');
 
-
+ 
 Route::get('/books', function () {
     return view('books');
 })->name('books.search');
 
-
+Route::get('/books/search',[BookController::class, 'search']);
 Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload');
 
 Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload');
