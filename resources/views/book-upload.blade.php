@@ -129,20 +129,20 @@
                     <div class="form-field mb-2">
                         <label class="form-label">Genre</label>
                         <select class="form-select" name="genre">
-                            <option>Horror</option>
-                            <option>Enfant</option>
-                            <option>Anime</option>
-                            <option>Histoire</option>
-                            <option>Romane</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Enfant">Enfant</option>
+                            <option value="Anime">Anime</option>
+                            <option value="Histoire">Histoire</option>
+                            <option value="Romane">Romane</option>
                         </select>
                     </div>
                     <div class="form-field mb-2">
                         <label class="form-label">Langue</label>
                         <select class="form-select" name="language">
-                            <option value="ar">Arabe</option>
-                            <option value="en">Anglais</option>
-                            <option value="fr">Français</option>
-                            <option value="esp">Espagnol</option>
+                            <option value="arabe">Arabe</option>
+                            <option value="anglais">Anglais</option>
+                            <option value="francais">Français</option>
+                            <option value="espagnol">Espagnol</option>
                         </select>
                     </div>
                 </div>
