@@ -49,11 +49,17 @@
                     @if (session('auth'))
                         @if (session('userType') == 'writer')
                             <li class="nav-item">
-                                <a class="btn bg-white px-3 me-2 rounded-4" href="#">Mes Livres Téléversé</a>
+                                <a class="nav-link text-light px-3 me-2" href="{{ route('books.uploaded') }}">Mes
+                                    Livres Téléversé</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-bg-light px-3 me-2 rounded-3"
+                                    href="{{ route('book.upload.form') }}">Téléverser un Livre</a>
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="btn bg-white px-3 me-2 rounded-4" href="#">Ma Liste de Lecture</a>
+                            <a class="nav-link text-light px-3 me-2" href="{{ route('books.reading') }}">Ma Liste de
+                                Lecture</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown ms-3">
@@ -107,7 +113,7 @@
             @endif
         </div>
         <div class="container mt-6">
-            <form class="form-group row g-4" method="POST" action="{{ route('book.upload') }}"
+            <form class="form-group row g-4" method="POST" action="{{ route('book.upload.submit') }}"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form-group-left col-6">
@@ -123,20 +129,20 @@
                     <div class="form-field mb-2">
                         <label class="form-label">Genre</label>
                         <select class="form-select" name="genre">
-                            <option>Horror</option>
-                            <option>Enfant</option>
-                            <option>Anime</option>
-                            <option>Histoire</option>
-                            <option>Romane</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Enfant">Enfant</option>
+                            <option value="Anime">Anime</option>
+                            <option value="Histoire">Histoire</option>
+                            <option value="Romane">Romane</option>
                         </select>
                     </div>
                     <div class="form-field mb-2">
                         <label class="form-label">Langue</label>
                         <select class="form-select" name="language">
-                            <option value="ar">Arabe</option>
-                            <option value="en">Anglais</option>
-                            <option value="fr">Français</option>
-                            <option value="esp">Espagnol</option>
+                            <option value="arabe">Arabe</option>
+                            <option value="anglais">Anglais</option>
+                            <option value="francais">Français</option>
+                            <option value="espagnol">Espagnol</option>
                         </select>
                     </div>
                 </div>

@@ -30,8 +30,7 @@ class BookController extends Controller
             'picture' => "covers/$pictureName",
             'writer_id' => 1,
         ]);
-
-        return redirect()->route('book.upload')->with('success', "$book->title a été bien téléverselr");
+        return redirect()->route('book.upload.submit')->with('success', "$book->title a été bien téléverselr");
     }
     public function search(Request $request) {
         $query = $request->input('query');
@@ -41,8 +40,7 @@ class BookController extends Controller
         ]);
     }
     public function show($id){
-        $book = Book::where('id', $id)->get();
-        return view('book-details',['book'=>$book[0]]);
+        $book = Book::where('id', $id)->first();
+        return view('book-details',['book'=>$book]);
     }
 }
-

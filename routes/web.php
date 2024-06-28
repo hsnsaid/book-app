@@ -26,8 +26,16 @@ Route::group(['middleware' => 'onlyAuth'], function () {
         return redirect()->route('home');
     })->name('logout');
 
-    Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload');
-    Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload');
+    Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload.form');
+    Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload.submit');
+
+    Route::get('/books/my-books', function () {
+        $books = [];
+        return view('my-books', compact('books'));
+    })->name('books.reading');
+
+    Route::get('/books/uploaded', [WriterController::class, 'myBooks'])->name('books.uploaded');
+
 
     Route::prefix('/admin')->name('admin.')->group(function () {
         Route::get('/statistics', [UIController::class, 'renderAdminStats'])->name('stats');
@@ -67,6 +75,6 @@ Route::get('/books/search',[BookController::class, 'search']);
 Route::get('mylist',function(){
     return view('mes-livres');
 });
-Route::get('/mylist/{userId}/{userType}', [MylistController::class, 'showBooks'])->name('mylist.books');
+Route::get('/books/my-books', [MylistController::class, 'showBooks'])->name('books.reading');
 Route::post('/mylist/add', [MylistController::class, 'addToList'])->name('mylist.add');
 Route::get('book/display/{id}',[BookController::class, 'show']);

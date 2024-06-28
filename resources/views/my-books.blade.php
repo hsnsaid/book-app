@@ -11,7 +11,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script defer src="./js/search.js"></script>
     <title>Document</title>
 </head>
 
@@ -45,11 +44,13 @@
             </button>
           </form>
            -->
+
                 <ul class="navbar-nav ms-auto">
                     @if (session('auth'))
                         @if (session('userType') == 'writer')
                             <li class="nav-item">
-                                <a class="nav-link text-light px-3 me-2" href="{{ route('books.uploaded') }}">Mes
+                                <a class="nav-link px-3 me-2 rounded-3 {{ isset($uploaded) && $uploaded == true ? 'text-bg-light' : 'text-light' }} "
+                                    href="{{ route('books.uploaded') }}">Mes
                                     Livres Téléversé</a>
                             </li>
                             <li class="nav-item">
@@ -58,7 +59,8 @@
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="nav-link text-light px-3 me-2" href="{{ route('books.reading') }}">Ma Liste de
+                            <a class="nav-link px-3 me-2 rounded-3 {{ !isset($uploaded) ? 'text-bg-light' : 'text-light' }}"
+                                href="{{ route('books.reading') }}">Ma Liste de
                                 Lecture</a>
                         </li>
                         <li class="nav-item">
@@ -96,67 +98,79 @@
             </div>
         </div>
     </nav>
-    <main class="row">
-        <section class="col-3 bg-lighter shadow">
-            <div class="px-4">
-                <div style="margin-top: 5rem !important">
-                    <div class="input-group shadow-sm">
-                        <input type="text" class="form-control" />
-                        <div class="input-group-text bg-green">
-                            <i class="bi bi-search text-white"></i>
-                        </div>
+    <main>
+        <div class="bg-lighter p-4 shadow-sm">
+            <form class="d-flex justify-content-center align-items-center">
+                <div class="d-flex w-75">
+                    <div class="form-group me-4 p-3 d-flex align-items-center w-50 justify-content-end">
+                        <label class="form-label me-4 mt-2 fs-5 fw-bold text-green">Catégorie</label>
+                        <select class="form-select w-75">
+                            <option value="">Horror</option>
+                            <option value="">Enfant</option>
+                            <option value="">Anime</option>
+                            <option value="">Romane</option>
+                        </select>
+                    </div>
+                    <div class="form-group me-4 p-3 d-flex align-items-center w-50">
+                        <label class="form-label me-4 mt-2 fs-5 fw-bold text-green">Langue</label>
+                        <select class="form-select w-75">
+                            <option value="">Arabe</option>
+                            <option value="">Anglais</option>
+                            <option value="">Français</option>
+                            <option value="">Espagnol</option>
+                        </select>
                     </div>
                 </div>
-            <div id="categorie">
-                <h5 class="mt-5 fw-bold">Catégorie</h5>
-                <hr />
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="animeCheckbox">
-                    <label class="form-check-label" for="animeCheckbox">Anime</label>
+                <div>
+                    <button class="btn bg-green-secondary px-4 rounded-4 shadow-sm text-white">
+                        Search
+                    </button>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="horrorCheckbox">
-                    <label class="form-check-label" for="horrorCheckbox">Horror</label>
+            </form>
+        </div>
+        <div class="container">
+            @forelse ($books as $book)
+                <div class="card my-5 border-0">
+                    <div class="row g-0">
+                        <div class="col-md-2 d-flex justify-content-center align-items-center">
+                            <img src="{{ asset("storage/$book->picture") }}" class="img-fluid rounded-start"
+                                width="200" height="250" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title fw-bold">{{ $book->title }}</h2>
+                                <p class="text-body-secondary fs-3">{{ $book->genre }}</p>
+                                <p class="fs-6">{{ $book->language }}</p>
+                                <p class="card-text mt-3 text-dark">
+                                    {{ $book->description }}
+                                </p>
+                                @isset($uploaded)
+                                    <div class="mt-4 fs-4">
+                                        <i class="bi bi-star-fill text-green"></i><i
+                                            class="bi bi-star-fill text-green"></i><i
+                                            class="bi bi-star-fill text-green"></i>
+                                        <i class="bi bi-star text-secondary"></i>
+                                        <i class="bi bi-star text-secondary"></i>
+                                        <i class="bi bi-star text-secondary"></i>
+                                    </div>
+                                @endisset
+                            </div>
+                        </div>
+                        @isset($uploaded)
+                            <div class="col-md-2 d-flex justify-content-center align-items-center">
+                                <h3 class="text-end fw-bold">40 Lus</h3>
+                            </div>
+                        @endisset
+                    </div>
+                    <hr class="mt-5 text-green" />
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="histoireCheckbox">
-                    <label class="form-check-label" for="histoireCheckbox">Histoire</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="enfantCheckbox">
-                    <label class="form-check-label" for="enfantCheckbox">Enfant</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="romaneCheckbox">
-                    <label class="form-check-label" for="romaneCheckbox">Romane</label>
-                </div>
-            </div>
-            <div id="language" class="mt-4">
-                <h5 class="mt-5 fw-bold">Language</h5>
-                <hr />
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="arabeCheckbox" />
-                    <label class="form-check-label" for="arabeCheckbox">Arabe</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="anglaisCheckbox" />
-                    <label class="form-check-label" for="anglaisCheckbox">Anglais</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="francaisCheckbox" />
-                    <label class="form-check-label" for="françaisCheckbox">Francais</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input border-secondary" id="espagnolCheckbox" />
-                    <label class="form-check-label" for="espagnolCheckbox">Espagnol</label>
-                </div>
-            </div>
-        </section>
-        <section class="col-9 row g-4 pb-5">
-            
-        </section>
+            @empty
+                <h1>you have 0 Books {{ isset($uploaded) ? 'uploaded' : 'to read' }}</h1>
+            @endforelse
+        </div>
     </main>
-    <footer class="bg-green-secondary d-flex justify-content-center align-items-center" style="height: 80px">
+    <footer class="bg-green-secondary d-flex justify-content-center align-items-center"
+        style="height: 80px; margin-top: 10rem !important">
         <div class="container d-flex align-items-center justify-content-center">
             <p class="text-white mt-2">@2024 Ghezyid eBook</p>
         </div>

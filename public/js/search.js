@@ -3,10 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('.form-control');
     const animeCheckbox = document.getElementById('animeCheckbox');
     const enfantCheckbox = document.getElementById('enfantCheckbox');
+    const romaneCheckbox = document.getElementById('romaneCheckbox');
+    const horrorCheckbox = document.getElementById('horrorCheckbox');
     const histoireCheckbox = document.getElementById('histoireCheckbox');
-    const arabicCheckbox = document.getElementById('arabicCheckbox');
-    const englishCheckbox = document.getElementById('englishCheckbox');
-    const frenchCheckbox = document.getElementById('frenchCheckbox');
+    const arabicCheckbox = document.getElementById('arabeCheckbox');
+    const englishCheckbox = document.getElementById('anglaisCheckbox');
+    const frenchCheckbox = document.getElementById('francaisCheckbox');
+    const espagnolCheckbox = document.getElementById('espagnolCheckbox');
     let booksData = []; 
     function fetchBooks() {
         fetch('/books/search')
@@ -26,21 +29,30 @@ document.addEventListener('DOMContentLoaded', function() {
         if (animeCheckbox.checked) {
             selectedGenres.push('anime');
         }
+        if (horrorCheckbox.checked) {
+            selectedGenres.push('horror');
+        }
         if (enfantCheckbox.checked) {
             selectedGenres.push('enfant');
+        }
+        if (romaneCheckbox.checked) {
+            selectedGenres.push('romane');
         }
         if (histoireCheckbox.checked) {
             selectedGenres.push('histoire');
         }
         const selectedLanguages = [];
         if (arabicCheckbox.checked) {
-            selectedLanguages.push('ar');
+            selectedLanguages.push('arabe');
         }
         if (englishCheckbox.checked) {
-            selectedLanguages.push('en');
+            selectedLanguages.push('anglais');
         }
         if (frenchCheckbox.checked) {
-            selectedLanguages.push('fr');
+            selectedLanguages.push('francais');
+        }
+        if(espagnolCheckbox.checked) {
+            selectedLanguages.push('espagnol');
         }
         let filteredBooks = booksData.filter(book => {
             if (selectedGenres.length > 0 && !selectedGenres.includes(book.genre.toLowerCase())) {
@@ -64,9 +76,13 @@ document.addEventListener('DOMContentLoaded', function() {
     animeCheckbox.addEventListener('change', updateResults);
     enfantCheckbox.addEventListener('change', updateResults);
     histoireCheckbox.addEventListener('change', updateResults);
+    horrorCheckbox.addEventListener('change', updateResults);
+    romaneCheckbox.addEventListener('change', updateResults);
     arabicCheckbox.addEventListener('change', updateResults);
     englishCheckbox.addEventListener('change', updateResults);
     frenchCheckbox.addEventListener('change', updateResults);
+    espagnolCheckbox.addEventListener('change', updateResults);
+
     function displayResults(books) {
         const section = document.querySelector('.col-9.row.g-4.pb-5');
         section.innerHTML = '';  

@@ -14,4 +14,9 @@ class Writer extends Model
         'password',
         'phone'
     ];
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
 }
