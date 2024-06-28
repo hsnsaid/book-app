@@ -49,20 +49,26 @@
                     @if (session('auth'))
                         @if (session('userType') == 'writer')
                             <li class="nav-item">
-                                <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.uploaded') }}">Mes
+                                <a class="nav-link px-3 me-2 rounded-3 {{ isset($uploaded) && $uploaded == true ? 'text-bg-light' : 'text-light' }} "
+                                    href="{{ route('books.uploaded') }}">Mes
                                     Livres Téléversé</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light px-3 me-2 rounded-3"
+                                    href="{{ route('book.upload.form') }}">Téléverser un Livre</a>
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.reading') }}">Ma Liste de
+                            <a class="nav-link px-3 me-2 rounded-3 {{ !isset($uploaded) ? 'text-bg-light' : 'text-light' }}"
+                                href="{{ route('books.reading') }}">Ma Liste de
                                 Lecture</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown ms-3">
                                 <button
                                     style=" color: #000; width: 40px; height:
-                        40px; border-radius: 50%; display: flex; justify-content: center; align-items:
-                        center; background-color: #ffffff; "
+                40px; border-radius: 50%; display: flex; justify-content: center; align-items:
+                center; background-color: #ffffff; "
                                     class="btn btn-white text-white dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <span
@@ -138,24 +144,28 @@
                                 <p class="card-text mt-3 text-dark">
                                     {{ $book->description }}
                                 </p>
-                                <div class="mt-4 fs-4">
-                                    <i class="bi bi-star-fill text-green"></i><i
-                                        class="bi bi-star-fill text-green"></i><i
-                                        class="bi bi-star-fill text-green"></i>
-                                    <i class="bi bi-star text-secondary"></i>
-                                    <i class="bi bi-star text-secondary"></i>
-                                    <i class="bi bi-star text-secondary"></i>
-                                </div>
+                                @isset($uploaded)
+                                    <div class="mt-4 fs-4">
+                                        <i class="bi bi-star-fill text-green"></i><i
+                                            class="bi bi-star-fill text-green"></i><i
+                                            class="bi bi-star-fill text-green"></i>
+                                        <i class="bi bi-star text-secondary"></i>
+                                        <i class="bi bi-star text-secondary"></i>
+                                        <i class="bi bi-star text-secondary"></i>
+                                    </div>
+                                @endisset
                             </div>
                         </div>
-                        <div class="col-md-2 d-flex justify-content-center align-items-center">
-                            <h3 class="text-end fw-bold">40 Lus</h3>
-                        </div>
+                        @isset($uploaded)
+                            <div class="col-md-2 d-flex justify-content-center align-items-center">
+                                <h3 class="text-end fw-bold">40 Lus</h3>
+                            </div>
+                        @endisset
                     </div>
                     <hr class="mt-5 text-green" />
                 </div>
             @empty
-                <h1>you have 0 Books uploaded</h1>
+                <h1>you have 0 Books {{ isset($uploaded) ? 'uploaded' : 'to read' }}</h1>
             @endforelse
         </div>
     </main>

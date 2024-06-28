@@ -72,6 +72,7 @@ class WriterController extends Controller
     {
         $writer = Writer::find(session('id'));
         $books = $writer->books()->get(['id', 'title', 'description', 'language', 'picture', 'genre']);
-        return view('mes-livres', compact('books'));
+        $uploaded = true;
+        return view('my-books', compact('books', 'uploaded'));
     }
 }

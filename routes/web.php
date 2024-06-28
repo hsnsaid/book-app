@@ -25,11 +25,12 @@ Route::group(['middleware' => 'onlyAuth'], function () {
         return redirect()->route('home');
     })->name('logout');
 
-    Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload');
-    Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload');
+    Route::get('book/upload', [UIController::class, 'renderBookUpload'])->name('book.upload.form');
+    Route::post('book/upload', [BookController::class, 'storeBook'])->name('book.upload.submit');
 
     Route::get('/books/my-books', function () {
-        return view('mes-livres');
+        $books = [];
+        return view('my-books', compact('books'));
     })->name('books.reading');
 
     Route::get('/books/uploaded', [WriterController::class, 'myBooks'])->name('books.uploaded');

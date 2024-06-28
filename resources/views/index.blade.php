@@ -24,7 +24,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="input-group ms-5" style="width: 50%" role="search">
+                {{-- <form class="input-group ms-5" style="width: 50%" role="search">
                     <select class="form-select">
                         <option value="">Catégorie</option>
                         <option value="">Fiction</option>
@@ -36,18 +36,22 @@
                     <button class="btn bg-light" type="submit">
                         <i class="bi bi-search text-success"></i>
                     </button>
-                </form>
+                </form> --}}
 
                 <ul class="navbar-nav ms-auto">
                     @if (session('auth'))
                         @if (session('userType') == 'writer')
                             <li class="nav-item">
-                                <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.uploaded') }}">Mes
+                                <a class="nav-link text-light px-3 me-2" href="{{ route('books.uploaded') }}">Mes
                                     Livres Téléversé</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light px-3 me-2"
+                                    href="{{ route('book.upload.form') }}">Téléverser un Livre</a>
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.reading') }}">Ma Liste de
+                            <a class="nav-link text-light px-3 me-2" href="{{ route('books.reading') }}">Ma Liste de
                                 Lecture</a>
                         </li>
                         <li class="nav-item">

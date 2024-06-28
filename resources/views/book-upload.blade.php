@@ -49,12 +49,16 @@
                     @if (session('auth'))
                         @if (session('userType') == 'writer')
                             <li class="nav-item">
-                                <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.uploaded') }}">Mes
+                                <a class="nav-link text-light px-3 me-2" href="{{ route('books.uploaded') }}">Mes
                                     Livres Téléversé</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-bg-light px-3 me-2 rounded-3"
+                                    href="{{ route('book.upload.form') }}">Téléverser un Livre</a>
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('books.reading') }}">Ma Liste de
+                            <a class="nav-link text-light px-3 me-2" href="{{ route('books.reading') }}">Ma Liste de
                                 Lecture</a>
                         </li>
                         <li class="nav-item">
@@ -109,7 +113,7 @@
             @endif
         </div>
         <div class="container mt-6">
-            <form class="form-group row g-4" method="POST" action="{{ route('book.upload') }}"
+            <form class="form-group row g-4" method="POST" action="{{ route('book.upload.submit') }}"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form-group-left col-6">
