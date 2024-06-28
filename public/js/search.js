@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const bookCard = document.createElement('div');
             bookCard.className = 'col-4';         
             bookCard.innerHTML = `
-                <a class="text-decoration-none" href="./book-details.html">
+                <a class="col-4 text-decoration-none" href="book/display/${book.id}">
                     <div class="card shadow-lg rounded-2 border border-1 overflow-hidden">
                         <div class="p-2 bg-white d-flex justify-content-center align-items-center">
                             <img src="/img/books/book-2.jpg" width="200" height="300" />

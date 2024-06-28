@@ -40,5 +40,9 @@ class BookController extends Controller
             'books' => $books
         ]);
     }
+    public function show($id){
+        $book = Book::where('id', $id)->get();
+        return view('book-details',['book'=>$book[0]]);
+    }
 }
 

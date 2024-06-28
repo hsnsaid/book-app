@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('genre');
+            $table->enum('genre',['Anime', 'Histoire', 'Romane', 'Horor','Enfant']);
             $table->enum('language', ['ar', 'en', 'fr', 'esp']);
             $table->longText('description');
             $table->string('file');

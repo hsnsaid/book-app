@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mylist;
+use App\Models\Book;
 
 class MylistController extends Controller
 {
@@ -22,4 +23,20 @@ class MylistController extends Controller
         });
         return view('mes-livres', ['books' => $books]);
     }
-}
+    public function addToList(Request $request)
+    {
+        $request->validate([
+            'book_id' => 'required|integer|exists:books,id',
+        ]);
+        $userId = session('id'); 
+        $userType = session('userType'); 
+        $book = Book::findOrFail($request->book_id);
+        $writerId = $book->writer_id;
+        Mylist::create([
+            'user_id' => $userId,
+            'book_id' => $request->book_id, 
+            'writer_id' => $writerId,
+            'user_type' => $userType,
+        ]);
+        return redirect()->back()->with('success', 'Book added to your list!');
+    }}

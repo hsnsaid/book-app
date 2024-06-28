@@ -9,6 +9,7 @@ class Mylist extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'book_id',
         'user_id',
         'writer_id',
         'user_type',

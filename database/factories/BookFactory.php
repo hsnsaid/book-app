@@ -23,7 +23,7 @@ class BookFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            'genre' => $this->faker->word,
+            'genre' => $this->faker->randomElement(['Anime', 'Histoire', 'Romane', 'Horor','Enfant']),
             'language' => $this->faker->randomElement(['ar', 'en', 'fr', 'esp']), 
             'description' => $this->faker->paragraph,
             'file' => $this->faker->filePath, 
