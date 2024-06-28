@@ -17,7 +17,7 @@
 <body>
     <nav class="navbar navbar-expand-lg border-bottom-grey px-5 shadow-sm bg-green-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold fs-4 text-white" href="#">Ghezyid eBook</a>
+            <a class="navbar-brand fw-bold fs-4 text-white" href="{{ route('home') }}">Ghezyid eBook</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="btn bg-white px-3 me-2 rounded-4" href="#">Mes Livres</a>
+                            <a class="btn bg-white px-3 me-2 rounded-4" href="{{ route('mylist.books', ['userId' => session('id'), 'userType' => session('userType')]) }}">Ma Liste de Lecture</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown ms-3">

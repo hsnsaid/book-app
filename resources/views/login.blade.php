@@ -42,12 +42,24 @@
                             href="{{ route('login.form', ['type' => 'reader']) }}">Liseur</a>
                         <a class="btn text-blue  px-3 fw-bold"
                             href="{{ route('login.form', ['type' => 'writer']) }}">Ecrivain</a>
+                        <a class="btn text-blue  px-3 fw-bold"
+                            href="{{ route('login.form', ['type' => 'admin']) }}">Administrateur</a>
                     @break
 
                     @case('writer')
                         <a class="btn text-blue fw-bold me-3" href="{{ route('login.form', ['type' => 'reader']) }}">Liseur</a>
                         <a class="btn bg-blue text-white px-3 fw-bold"
                             href="{{ route('login.form', ['type' => 'writer']) }}">Ecrivain</a>
+                        <a class="btn text-blue  px-3 fw-bold"
+                            href="{{ route('login.form', ['type' => 'admin']) }}">Administrateur</a>
+                    @break
+
+                    @case('admin')
+                        <a class="btn text-blue fw-bold me-3" href="{{ route('login.form', ['type' => 'reader']) }}">Liseur</a>
+                        <a class="btn text-blue px-3 fw-bold"
+                            href="{{ route('login.form', ['type' => 'writer']) }}">Ecrivain</a>
+                        <a class="btn bg-blue text-white  px-3 fw-bold"
+                            href="{{ route('login.form', ['type' => 'admin']) }}">Administrateur</a>
                     @break
                 @endswitch
 
@@ -65,7 +77,7 @@
 
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label">Entrez votre password</label>
+                    <label class="form-label">Entrez votre mot de passe</label>
                     <input type="password" name="password" class="form-control" />
                 </div>
                 <button type="submit" class="btn bg-green-secondary text-white px-4 fw-bold rounded-3 mt-4">
@@ -79,7 +91,7 @@
 </html>
 
 <!--
-more catgories :
-- Science
-- Politique
--->
+    more catgories :
+    - Science
+    - Politique
+    -->

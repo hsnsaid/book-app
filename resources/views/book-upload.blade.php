@@ -17,7 +17,7 @@
 <body class="overflow-x-hidden">
     <nav class="navbar navbar-expand-lg border-bottom-grey px-5 shadow-sm bg-green-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold fs-4 text-white" href="#">Ghezyid eBook</a>
+            <a class="navbar-brand fw-bold fs-4 text-white" href="{{ route('home') }}">Ghezyid eBook</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -46,12 +46,46 @@
            -->
 
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="btn bg-white px-3 me-2 rounded-4" href="#">Se connecter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn text-white" href="#">S'inscrire</a>
-                    </li>
+                    @if (session('auth'))
+                        @if (session('userType') == 'writer')
+                            <li class="nav-item">
+                                <a class="btn bg-white px-3 me-2 rounded-4" href="#">Mes Livres Téléversé</a>
+                            </li>
+                        @endif
+                        <li class="nav-item">
+                            <a class="btn bg-white px-3 me-2 rounded-4" href="#">Ma Liste de Lecture</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown ms-3">
+                                <button
+                                    style=" color: #000; width: 40px; height:
+                        40px; border-radius: 50%; display: flex; justify-content: center; align-items:
+                        center; background-color: #ffffff; "
+                                    class="btn btn-white text-white dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span
+                                        class="text-dark px-1 position-absolute">{{ strtoupper(substr(session()->get('name'), 0, 1)) }}</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" style="font-size: 14px" href="{{ route('logout') }}">
+                                            <i class="bi bi-box-arrow-left me-2"></i>
+                                            <span>Logout</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="btn bg-white px-3 me-2 rounded-4"
+                                href="{{ route('login.form', ['type' => 'reader']) }}">Se connecter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn text-white px-3"
+                                href="{{ route('register', ['type' => 'reader']) }}">S'inscrire</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

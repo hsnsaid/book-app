@@ -29,6 +29,8 @@ class ReaderController extends Controller
         session()->remove('password');
         session()->remove('planType');
         session()->put('id', $reader->id);
+        session()->put('auth', true);
+        session()->put('userType', 'reader');
 
         return redirect()->route('home');
     }
@@ -55,12 +57,12 @@ class ReaderController extends Controller
             return redirect()->route('login.form', ['type' => 'reader'])->with('message', 'invalide pseudo ou/et mot de pass');
         else
             session([
+                'id' =>  $reader->id,
                 'auth' => true,
                 'userType' => 'reader',
                 'name' => $reader->name,
             ]);
 
-        session()->put('id', $reader->id);
         return redirect()->route('home');
     }
 }

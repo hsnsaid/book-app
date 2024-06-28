@@ -22,10 +22,10 @@ class WriterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:8|max:255|unique:readers',
-            'email' => 'required|string|email|max:255|unique:readers',
+            'name' => 'required|string|min:8|max:255|unique:writers',
+            'email' => 'required|string|email|max:255|unique:writers',
             'password' => 'required|string|min:8',
-            'phone' => 'required|digits:10|unique:readers'
+            'phone' => 'required|digits:10|unique:writers'
         ];
     }
 
