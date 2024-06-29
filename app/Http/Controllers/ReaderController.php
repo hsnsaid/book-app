@@ -18,7 +18,7 @@ class ReaderController extends Controller
             'password' => session()->get('password'),
         ]);
 
-        Plan::create([
+        $plan=Plan::create([
             'planType' => session()->get('planType'),
             'planStartDate' =>  today(),
             'planEndDate' =>  today()->addMonth(),
@@ -27,7 +27,7 @@ class ReaderController extends Controller
         ]);
 
         session()->remove('password');
-        session()->remove('planType');
+        session()->put('planType', $plan->planType);
         session()->put('id', $reader->id);
         session()->put('auth', true);
         session()->put('userType', 'reader');
@@ -56,11 +56,15 @@ class ReaderController extends Controller
         if ($reader == null)
             return redirect()->route('login.form', ['type' => 'reader'])->with('message', 'invalide pseudo ou/et mot de pass');
         else
+        $plan = Plan::where('userId', $reader->id)
+                    ->where('userType', 'reader')
+                    ->first();
             session([
                 'id' =>  $reader->id,
                 'auth' => true,
                 'userType' => 'reader',
                 'name' => $reader->name,
+                'planType' => $plan->planType
             ]);
 
         return redirect()->route('home');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
+use App\Models\Mylist;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -40,7 +41,26 @@ class BookController extends Controller
         ]);
     }
     public function show($id){
-        $book = Book::where('id', $id)->first();
-        return view('book-details',['book'=>$book]);
+        $book = Book::where('id', $id)->first();        
+        $my_list = Mylist::where('user_id', session('id'))
+                         ->where('user_type', session('userType'))
+                         ->where('book_id', $id)
+                         ->first();                         
+        $exist = !is_null($my_list);        
+        $show = true;        
+        $count = Mylist::where('user_id', session('id'))
+                       ->where('user_type', session('userType'))
+                       ->count(); 
+        if(session('planType')=='gratuit'){
+            if($count >=2){
+                $show = false;
+            }
+        }
+        else if (session('planType')=='basique'){
+            if($count >=20){
+                $show = false;
+            }
+        }
+        return view('book-details', ['book' => $book, 'exist' => $exist, 'show' => $show]);
     }
 }

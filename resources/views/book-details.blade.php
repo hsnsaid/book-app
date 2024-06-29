@@ -113,13 +113,20 @@
                                 {{$book->description}}
                             </p>
                             <div>
-                            <form id="add-to-list-form" action="{{ route('mylist.add') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="book_id" value="{{ $book->id }}">
+                            @if($exist =='true')
+                                <a href="" class="btn bg-green px-4 mt-5 text-white shadow fw-bold">Lire</a>
+                            @elseif($show ==false)
                                 <button class="btn bg-green px-4 mt-5 text-white shadow fw-bold">
-                                    Ajouter
-                                </button>
-                            </form>
+                                    Vous avez atteint le nombre maximum de livres autorisés par votre plan actuel.                                </button>
+                            @else
+                                <form id="add-to-list-form" action="{{ route('mylist.add') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="book_id" value="{{ $book->id }}">
+                                    <button class="btn bg-green px-4 mt-5 text-white shadow fw-bold">
+                                        Ajouter
+                                    </button>
+                                </form>
+                            @endif
                             </div>
                             <div class="mt-4 fs-4">
                                 <i class="bi bi-star-fill text-green"></i><i class="bi bi-star-fill text-green"></i><i
